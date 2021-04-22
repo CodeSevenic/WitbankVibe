@@ -226,6 +226,7 @@ img.medium {
 
 .alert-danger {
   align-self: center;
+  text-align: center;
   color: #a02020;
   width: 80%;
   background-color: #ffe0e0e0;

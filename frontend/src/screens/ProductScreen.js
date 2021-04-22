@@ -1,17 +1,24 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Rating from '../components/Ratings';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { productDetails } from '../actions/productActions';
 
 export default function ProductScreen(props) {
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const dispatch = useDispatch();
+  const productId = props.match.params.id;
+  const prodDetails = useSelector((state) => state.prodDetails);
+  const { loading, error, product } = prodDetails;
+
+  useEffect(() => {
+    dispatch(productDetails(productId));
+  }, [dispatch, productId]);
 
   return (
-    <div>
+    <React.Fragment>
       {loading ? (
         <LoadingBox />
       ) : error ? (
@@ -74,6 +81,6 @@ export default function ProductScreen(props) {
           </div>
         </React.Fragment>
       )}
-    </div>
+    </React.Fragment>
   );
 }
