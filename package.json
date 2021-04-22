@@ -1,0 +1,23 @@
+{
+  "name": "witbank-vibe",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "multi-vendor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeSevenic/WitbankVibe.git"
+  },
+  "author": "Sibusiso Shongwe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeSevenic/WitbankVibe/issues"
+  },
+  "homepage": "https://github.com/CodeSevenic/WitbankVibe#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

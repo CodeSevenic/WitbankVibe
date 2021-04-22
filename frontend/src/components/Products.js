@@ -16,7 +16,7 @@ export default function Products(props) {
           rating={product.rating}
           numReviews={product.numReviews}
         ></Ratings>
-        <div className="price">R{product.price}</div>
+        <div className="price">R {product.price}</div>
       </div>
     </div>
   );
