@@ -21,11 +21,13 @@ body {
 .container {
   min-height: 100vh;
   margin: 0 auto;
+  max-width: 1300px;
 }
 
 main {
   position: relative;
-  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
 }
 
 footer {
@@ -168,6 +170,7 @@ img.medium {
 
 .product_img img {
   width: 90%;
+  margin-bottom: 3rem;
 }
 
 .product-details-wrap {
@@ -206,6 +209,25 @@ img.medium {
   color: #20a020;
 }
 
-.error {
-  color: #d41616;
+.danger {
+  color: #a02020;
+}
+
+.alert {
+  padding: 1rem;
+  border: 0.1rem solid transparent;
+  border: 0.5rem;
+}
+
+.alert-info {
+  color: #2020a0;
+  background-color: #e0e0ff;
+}
+
+.alert-danger {
+  align-self: center;
+  color: #a02020;
+  width: 80%;
+  background-color: #ffe0e0e0;
+  border-radius: 0.5rem;
 }
