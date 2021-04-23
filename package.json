@@ -1,11 +1,10 @@
 {
   "name": "witbank-vibe",
-  "type": "module",
   "version": "1.0.0",
   "description": "multi-vendor",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon backend/server.js"
+    "start": "nodemon  backend/server.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +19,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "mongoose": "^5.12.5"
   },
   "devDependencies": {

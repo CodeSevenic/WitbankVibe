@@ -1,17 +1,18 @@
-import bcrypt from 'bcryptjs';
+// import bcrypt from 'bcryptjs';
+const bcrypt = require('bcryptjs');
 
 const data = {
   users: [
     {
       name: 'Sibusiso',
       email: 'admin@example.com',
-      password: bcrypt.hashAsync('1234', 8),
+      password: bcrypt.hashSync('1234', 8),
       isAdmin: true,
     },
     {
       name: 'John',
       email: 'user@example.com',
-      password: bcrypt.hashAsync('1234', 8),
+      password: bcrypt.hashSync('1234', 8),
       isAdmin: false,
     },
   ],
@@ -117,4 +118,4 @@ const data = {
   ],
 };
 
-export default data;
+module.exports = data;
