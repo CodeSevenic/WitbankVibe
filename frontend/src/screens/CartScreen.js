@@ -22,9 +22,13 @@ export default function CartScreen(props) {
   const removeFromCartHandler = (id) => {
     // delete action
   };
+
+  const checkoutHandler = () => {
+    props.history.push('/signin?redirect=shipping');
+  };
   return (
-    <div className="row top">
-      <div>
+    <React.Fragment>
+      <div className="shopping-cart-contents">
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <MessageBox>
@@ -34,7 +38,7 @@ export default function CartScreen(props) {
           <ul>
             {cartItems.map((item) => (
               <li key={item.product}>
-                <div className="row">
+                <div className="shopping-cart-details">
                   <div>
                     <img src={item.image} alt={item.name} className="small" />
                   </div>
@@ -46,8 +50,7 @@ export default function CartScreen(props) {
                       value={item.qty}
                       onChange={(e) =>
                         dispatch(
-                          addToCart(item.product),
-                          Number(e.target.value)
+                          addToCart(item.product, Number(e.target.value))
                         )
                       }
                     >
@@ -73,6 +76,28 @@ export default function CartScreen(props) {
           </ul>
         )}
       </div>
-    </div>
+      <div>
+        <div className="card card-body">
+          <ul>
+            <li>
+              <h2>
+                Subtotal ({cartItems.reduce((a, c) => (a = c.qty), 0)} items) :
+                ${cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+              </h2>
+            </li>
+            <li>
+              <button
+                type="button"
+                onclick={checkoutHandler}
+                className="primary block"
+                disabled={cartItems.length === 0}
+              >
+                Proceed to Checkout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </React.Fragment>
   );
 }
