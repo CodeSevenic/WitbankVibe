@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Route } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
@@ -10,13 +10,13 @@ function App() {
     <BrowserRouter>
       <header className="row">
         <div>
-          <a className="brand" href="/">
+          <Link className="brand" to="/">
             WitbankViBE
-          </a>
+          </Link>
         </div>
         <div>
-          <a href="cart.html">Cart</a>
-          <a href="siginin">Sign In</a>
+          <Link to="cart.html">Cart</Link>
+          <Link to="siginin">Sign In</Link>
         </div>
       </header>
       <div id="container" className="container">
