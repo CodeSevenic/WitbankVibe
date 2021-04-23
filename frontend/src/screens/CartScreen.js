@@ -28,8 +28,31 @@ export default function CartScreen(props) {
   };
   return (
     <React.Fragment>
+      <h1 className="shopping-t">Shopping Cart</h1>
+
+      <div>
+        <div className="card card-body">
+          <ul>
+            <li>
+              <h2>
+                Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : R{' '}
+                {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+              </h2>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={checkoutHandler}
+                className="primary block"
+                disabled={cartItems.length === 0}
+              >
+                Proceed to Checkout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
       <div className="shopping-cart-contents">
-        <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <MessageBox>
             Cart is empty. <Link to="/">Go Shopping</Link>
@@ -75,28 +98,6 @@ export default function CartScreen(props) {
             ))}
           </ul>
         )}
-      </div>
-      <div>
-        <div className="card card-body">
-          <ul>
-            <li>
-              <h2>
-                Subtotal ({cartItems.reduce((a, c) => (a = c.qty), 0)} items) :
-                ${cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
-              </h2>
-            </li>
-            <li>
-              <button
-                type="button"
-                onclick={checkoutHandler}
-                className="primary block"
-                disabled={cartItems.length === 0}
-              >
-                Proceed to Checkout
-              </button>
-            </li>
-          </ul>
-        </div>
       </div>
     </React.Fragment>
   );
