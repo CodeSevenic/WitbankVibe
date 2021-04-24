@@ -20,7 +20,7 @@ function App() {
     dispatch(signout());
   };
 
-  const [isActive, setActive] = useState('false');
+  const [isActive, setActive] = useState(false);
 
   const handleToggleClass = () => {
     setActive(!isActive);

@@ -9,6 +9,7 @@ export default function RegisterScreen(props) {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const redirect = props.location.search
     ? props.location.search.split('=')[1]
@@ -21,7 +22,11 @@ export default function RegisterScreen(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(register(name, email, password));
+    if (password !== confirmPassword) {
+      alert('Password and confirm password does not match');
+    } else {
+      dispatch(register(name, email, password));
+    }
   };
 
   useEffect(() => {
@@ -33,7 +38,7 @@ export default function RegisterScreen(props) {
     <div>
       <form onSubmit={submitHandler} className="form">
         <div>
-          <h1>Register</h1>
+          <h1>Create Account</h1>
         </div>
         {loading && <LoadingBox></LoadingBox>}
         {error && (
@@ -46,7 +51,7 @@ export default function RegisterScreen(props) {
           <input
             type="text"
             id="name"
-            placeholder="Enter Name"
+            placeholder="Enter name"
             required
             onChange={(e) => setName(e.target.value)}
           />
@@ -57,7 +62,7 @@ export default function RegisterScreen(props) {
           <input
             type="email"
             id="email"
-            placeholder="Enter Email"
+            placeholder="Enter email"
             required
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -75,6 +80,17 @@ export default function RegisterScreen(props) {
         </div>
 
         <div>
+          <label htmlFor="confirmPassword">Confirm password </label>
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Enter Confirm Password"
+            required
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </div>
+
+        <div>
           <label />
           <button className="primary" type="submit">
             Register
@@ -83,7 +99,8 @@ export default function RegisterScreen(props) {
         <div>
           <label />
           <div>
-            Already have an account? <Link to="/signin">Sign In</Link>
+            Already have an account?{' '}
+            <Link to={`/signin?redirect=${redirect}`}>Sign In</Link>
           </div>
         </div>
       </form>
