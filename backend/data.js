@@ -18,7 +18,6 @@ const data = {
   ],
   products: [
     {
-      _id: '1',
       name: 'Lacoste Shoes',
       category: 'Shoes',
       image: '/images/pic1.png',
@@ -31,8 +30,7 @@ const data = {
     },
 
     {
-      _id: '2',
-      name: 'Snuck Shoes',
+      name: 'Product 2',
       category: 'Shoes',
       image: '/images/pic2.png',
       price: 650,
@@ -44,8 +42,7 @@ const data = {
     },
 
     {
-      _id: '3',
-      name: 'Snuck Shoes',
+      name: 'Product 3',
       category: 'Shoes',
       image: '/images/pic3.png',
       price: 650,
@@ -56,8 +53,7 @@ const data = {
       description: 'High quality product',
     },
     {
-      _id: '4',
-      name: 'Snuck Shoes',
+      name: 'Product 4',
       category: 'Shoes',
       image: '/images/pic4.png',
       price: 650,
@@ -68,8 +64,7 @@ const data = {
       description: 'High quality product',
     },
     {
-      _id: '5',
-      name: 'Snuck Shoes',
+      name: 'Product 5',
       category: 'Shoes',
       image: '/images/pic5.png',
       price: 650,
@@ -80,8 +75,7 @@ const data = {
       description: 'High quality product',
     },
     {
-      _id: '6',
-      name: 'Snuck Shoes',
+      name: 'Product 6',
       category: 'Shoes',
       image: '/images/pic6.png',
       price: 650,
@@ -92,8 +86,7 @@ const data = {
       description: 'High quality product',
     },
     {
-      _id: '7',
-      name: 'Snuck Shoes',
+      name: 'Product 7',
       category: 'Shoes',
       image: '/images/pic7.png',
       price: 650,
@@ -104,8 +97,7 @@ const data = {
       description: 'High quality product',
     },
     {
-      _id: '8',
-      name: 'Snuck Shoes',
+      name: 'Product 8',
       category: 'Shoes',
       image: '/images/pic8.png',
       price: 650,

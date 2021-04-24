@@ -1,15 +1,40 @@
 // import express from 'express';
 const express = require('express');
-// import data from '../data';
+const bcrypt = require('bcryptjs');
+const expressAsyncHandler = require('express-async-handler');
 const data = require('../data');
-// import User from '../models/userModels.js';
 const User = require('../models/userModels');
+const { generateToken } = require('../utils/generateToken');
 
 const userRouter = express.Router();
 
-userRouter.get('/seed', async (req, res) => {
-  const createdUsers = await User.insertMany(data.users);
-  res.send({ createdUsers });
-});
+userRouter.get(
+  '/seed',
+  expressAsyncHandler(async (req, res) => {
+    // await User.deleteMany({});
+    const createdUsers = await User.insertMany(data.users);
+    res.send({ createdUsers });
+  })
+);
 
+userRouter.post(
+  '/signin',
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findOne({ email: req.body.email });
+    if (user) {
+      if (bcrypt.compareSync(req.body.password, user.password)) {
+        res.send({
+          _id: user.id,
+          name: user.name,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          token: generateToken(user),
+        });
+
+        return;
+      }
+    }
+    res.status(401).send({ message: 'Invalid email or password' });
+  })
+);
 module.exports = userRouter;
