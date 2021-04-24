@@ -289,6 +289,10 @@ h1.shopping-t {
   margin: 1rem;
 }
 
+form .alert-centered {
+  margin: auto;
+}
+
 .form label {
   margin: 1rem 0;
   display: block;
