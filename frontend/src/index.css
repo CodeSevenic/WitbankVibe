@@ -275,3 +275,21 @@ h1.shopping-t {
 .shopping-cart-contents h1 {
   text-align: center;
 }
+
+/* Form */
+
+.form {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.form > div {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.form label {
+  margin: 1rem 0;
+  display: block;
+}
