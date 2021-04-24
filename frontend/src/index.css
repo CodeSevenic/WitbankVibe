@@ -328,11 +328,20 @@ form .alert-centered {
 
 /* Checkout Steps */
 
+.checkout-content {
+  display: flex;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
 .checkout-steps > div {
   border-top: 0.3rem #c0c0c0 solid;
   color: #c0c0c0;
   flex: 1;
   padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+  margin: 1rem;
 }
 
 .checkout-steps > div.active {
