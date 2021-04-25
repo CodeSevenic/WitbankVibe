@@ -8,6 +8,20 @@ export default function PlaceOrderScreen(props) {
   if (!cart.paymentMethod) {
     props.history.push('/payment');
   }
+
+  const toPrice = (num) => Number(num.toFixed(2)); // 5.123 => "5.12" => 5.12
+
+  cart.itemsPrice = toPrice(
+    cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
+  );
+  cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
+  cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
+  cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
+
+  const placeOrderHandler = () => {
+    // TODO: dispatch place order action
+  };
+
   return (
     <div>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -65,7 +79,58 @@ export default function PlaceOrderScreen(props) {
             </li>
           </ul>
         </div>
-        <div className="place-order-content-span-1"></div>
+        <div className="place-order-content-span-1">
+          <div className="card card-body">
+            <ul>
+              <li>
+                <h2>Order Summary</h2>
+              </li>
+
+              <li>
+                <div className="row">
+                  <div>Items:</div>
+                  <div>R {cart.itemsPrice.toFixed(2)}</div>
+                </div>
+              </li>
+
+              <li>
+                <div className="row">
+                  <div>Shipping:</div>
+                  <div>R {cart.shippingPrice.toFixed(2)}</div>
+                </div>
+              </li>
+
+              <li>
+                <div className="row">
+                  <div>Tax:</div>
+                  <div>R {cart.taxPrice.toFixed(2)}</div>
+                </div>
+              </li>
+
+              <li>
+                <div className="row">
+                  <div>
+                    <strong>Order Total:</strong>
+                  </div>
+                  <div>
+                    <strong>R {cart.totalPrice.toFixed(2)}</strong>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <button
+                  type="button"
+                  onClick={placeOrderHandler}
+                  className="primary block"
+                  disabled={cart.cartItems.length === 0}
+                >
+                  Place Order
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

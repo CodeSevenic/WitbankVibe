@@ -156,7 +156,9 @@ img.medium {
 }
 
 img.small {
+  max-height: 5rem;
   max-width: 5rem;
+  object-fit: contain;
   width: 100%;
 }
 
@@ -350,4 +352,20 @@ h1.payment-method {
 .checkout-steps > div.active {
   border-top-color: #ff8000;
   color: #ff8000;
+}
+
+.place-order-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.place-order-content-span-2 {
+  flex: 1 0 60%;
+  flex-wrap: wrap;
+}
+
+.place-order-content-span-1 {
+  flex: 1 0 40%;
+  flex-wrap: wrap;
 }
