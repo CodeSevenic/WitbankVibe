@@ -299,7 +299,10 @@ form .alert-centered {
 
 .form label {
   margin: 1rem 0;
-  display: block;
+}
+
+h1.payment-method {
+  padding: 0;
 }
 
 /* Dropdown */

@@ -6,11 +6,12 @@ import { saveShippingAddress } from '../actions/cartActions';
 export default function ShippingAddressScreen(props) {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-  const cart = useSelector((state) => state.cart);
-  const { shippingAddress } = cart;
   if (!userInfo) {
     props.history.push('/signin');
   }
+
+  const cart = useSelector((state) => state.cart);
+  const { shippingAddress } = cart;
 
   const [fullName, setFullName] = useState(shippingAddress.fullName);
   const [address, setAddress] = useState(shippingAddress.address);
@@ -26,6 +27,7 @@ export default function ShippingAddressScreen(props) {
     );
     props.history.push('/payment');
   };
+
   return (
     <div>
       <CheckoutSteps step1 step2></CheckoutSteps>
@@ -40,7 +42,7 @@ export default function ShippingAddressScreen(props) {
             type="text"
             id="fullName"
             placeholder="Enter full name"
-            value={fullName}
+            value={fullName || ''}
             onChange={(e) => setFullName(e.target.value)}
             required
           />
@@ -52,7 +54,7 @@ export default function ShippingAddressScreen(props) {
             type="text"
             id="address"
             placeholder="Enter address"
-            value={address}
+            value={address || ''}
             onChange={(e) => setAddress(e.target.value)}
             required
           />
@@ -64,7 +66,7 @@ export default function ShippingAddressScreen(props) {
             type="text"
             id="city"
             placeholder="Enter city"
-            value={city}
+            value={city || ''}
             onChange={(e) => setCity(e.target.value)}
             required
           />
@@ -76,7 +78,7 @@ export default function ShippingAddressScreen(props) {
             type="text"
             id="postalCode"
             placeholder="Enter postal code"
-            value={postalCode}
+            value={postalCode || ''}
             onChange={(e) => setPostalCode(e.target.value)}
             required
           />
@@ -88,7 +90,7 @@ export default function ShippingAddressScreen(props) {
             type="text"
             id="country"
             placeholder="Enter country"
-            value={country}
+            value={country || ''}
             onChange={(e) => setCountry(e.target.value)}
             required
           />

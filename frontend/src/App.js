@@ -16,7 +16,6 @@ function App() {
   const { cartItems } = cart;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-
   const dispatch = useDispatch();
   const signoutHandler = () => {
     dispatch(signout());
@@ -53,7 +52,7 @@ function App() {
               </Link>
               <ul className="dropdown-content">
                 <li>
-                  <Link to="#signout" onClick={signoutHandler}>
+                  <Link to="/signout" onClick={signoutHandler}>
                     Sign Out
                   </Link>
                 </li>
