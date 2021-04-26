@@ -1,22 +1,27 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { detailsOrder } from '../actions/orderActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
 export default function OrderScreen(props) {
   const orderId = props.match.params.id;
-
+  const orderDetails = useSelector((state) => state.orderDetails);
   const dispatch = useDispatch();
-
+  const { order, loading, error } = orderDetails;
   useEffect(() => {
     dispatch(detailsOrder(orderId));
   }, [orderId, dispatch]);
 
-  return (
+  return loading ? (
+    <LoadingBox />
+  ) : error ? (
+    <MessageBox variant="danger">{error}</MessageBox>
+  ) : (
     <div>
-      <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
+      <h1>Order: {order._id}</h1>
       <div className="place-order-content">
         <div className="place-order-content-span-2">
           <ul>
@@ -24,10 +29,11 @@ export default function OrderScreen(props) {
               <div className="card card-body">
                 <h2>Shipping</h2>
                 <p>
-                  <strong>Name:</strong> {cart.shippingAddress.fullName} <br />
-                  <strong>Address:</strong> {cart.shippingAddress.address},
-                  {cart.shippingAddress.city}, {cart.shippingAddress.postalCode}
-                  ,{cart.shippingAddress.country}
+                  <strong>Name:</strong> {order.shippingAddress.fullName} <br />
+                  <strong>Address:</strong> {order.shippingAddress.address},
+                  {order.shippingAddress.city},{' '}
+                  {order.shippingAddress.postalCode},
+                  {order.shippingAddress.country}
                 </p>
               </div>
             </li>
@@ -36,7 +42,7 @@ export default function OrderScreen(props) {
               <div className="card card-body">
                 <h2>Payment</h2>
                 <p>
-                  <strong>Method:</strong> {cart.paymentMethod}
+                  <strong>Method:</strong> {order.paymentMethod}
                 </p>
               </div>
             </li>
@@ -45,7 +51,7 @@ export default function OrderScreen(props) {
               <div className="card card-body">
                 <h2>Order Items</h2>
                 <ul>
-                  {cart.cartItems.map((item) => (
+                  {order.orderItems.map((item) => (
                     <li key={item.product}>
                       <div className="shopping-cart-details">
                         <div>
@@ -81,21 +87,21 @@ export default function OrderScreen(props) {
               <li>
                 <div className="row">
                   <div>Items:</div>
-                  <div>R {cart.itemsPrice.toFixed(2)}</div>
+                  <div>R {order.itemsPrice.toFixed(2)}</div>
                 </div>
               </li>
 
               <li>
                 <div className="row">
                   <div>Shipping:</div>
-                  <div>R {cart.shippingPrice.toFixed(2)}</div>
+                  <div>R {order.shippingPrice.toFixed(2)}</div>
                 </div>
               </li>
 
               <li>
                 <div className="row">
                   <div>Tax:</div>
-                  <div>R {cart.taxPrice.toFixed(2)}</div>
+                  <div>R {order.taxPrice.toFixed(2)}</div>
                 </div>
               </li>
 
@@ -105,23 +111,10 @@ export default function OrderScreen(props) {
                     <strong>Order Total:</strong>
                   </div>
                   <div>
-                    <strong>R {cart.totalPrice.toFixed(2)}</strong>
+                    <strong>R {order.totalPrice.toFixed(2)}</strong>
                   </div>
                 </div>
               </li>
-
-              <li>
-                <button
-                  type="button"
-                  onClick={placeOrderHandler}
-                  className="primary block"
-                  disabled={cart.cartItems.length === 0}
-                >
-                  Place Order
-                </button>
-              </li>
-              {loading && <LoadingBox></LoadingBox>}
-              {error && <MessageBox variant="danger">{error}</MessageBox>}
             </ul>
           </div>
         </div>
