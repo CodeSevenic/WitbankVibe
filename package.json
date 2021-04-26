@@ -27,5 +27,8 @@
   "devDependencies": {
     "eslint": "^7.24.0",
     "eslint-plugin-react": "^7.23.2"
+  },
+  "optionalDependencies": {
+    "win-node-env": "^0.4.0"
   }
 }

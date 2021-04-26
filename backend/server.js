@@ -1,11 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config();
 const productRouter = require('./routers/productRouter');
 const userRouter = require('./routers/userRouter');
 const orderRouter = require('./routers/orderRouter');
-
-dotenv.config();
 
 const app = express();
 
@@ -21,6 +19,9 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/witbankvibe', {
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
+app.get('/api/config/paypal', (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
+});
 
 app.get('/', (req, res) => {
   res.send('Server is ready');
