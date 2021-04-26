@@ -1,4 +1,3 @@
-// import express from 'express';
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const expressAsyncHandler = require('express-async-handler');
@@ -11,7 +10,6 @@ const userRouter = express.Router();
 userRouter.get(
   '/seed',
   expressAsyncHandler(async (req, res) => {
-    // await User.deleteMany({});
     const createdUsers = await User.insertMany(data.users);
     res.send({ createdUsers });
   })
@@ -55,6 +53,18 @@ userRouter.post(
       isAdmin: createdUser.isAdmin,
       token: generateToken(createdUser),
     });
+  })
+);
+
+userRouter.get(
+  '/:id',
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (user) {
+      res.send(user);
+    } else {
+      res.status(404).send({ message: 'User Not Found' });
+    }
   })
 );
 

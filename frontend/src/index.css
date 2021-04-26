@@ -82,6 +82,10 @@ button {
   cursor: pointer;
 }
 
+button.small {
+  font-size: 1.5rem;
+}
+
 input:hover,
 select:hover,
 textarea:hover,
@@ -377,4 +381,26 @@ h1.payment-method {
 .place-order-content-span-1 {
   flex: 1 0 40%;
   flex-wrap: wrap;
+}
+
+/* Table */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: #f4f4f4;
+}
+
+.table td,
+.table th {
+  text-align: left;
+  border: 0.1rem solid #e4e4e4;
+  padding: 0.5rem;
+}
+
+.table button {
+  margin: 0 0.2rem;
 }

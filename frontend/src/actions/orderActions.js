@@ -88,7 +88,7 @@ export const myOrderList = () => async (dispatch, getState) => {
   dispatch({ type: ORDER_LIST_REQUEST });
   const {
     userSignin: { userInfo },
-  } = getState;
+  } = getState();
   try {
     const { data } = await axios.get('/api/orders/myorders', {
       headers: {
