@@ -26,10 +26,15 @@ function App() {
     dispatch(signout());
   };
 
-  const [isActive, setActive] = useState(false);
+  const [isActiveUser, setActiveUser] = useState(false);
+  const [isActiveAdmin, setActiveAdmin] = useState(false);
 
-  const handleToggleClass = () => {
-    setActive(!isActive);
+  const toggleUser = () => {
+    setActiveUser(!isActiveUser);
+  };
+
+  const toggleAdmin = () => {
+    setActiveAdmin(!isActiveAdmin);
   };
 
   return (
@@ -49,8 +54,8 @@ function App() {
           </Link>
           {userInfo ? (
             <div
-              className={isActive ? 'dropdown toggle' : 'dropdown'}
-              onClick={handleToggleClass}
+              className={isActiveUser ? 'dropdown toggle' : 'dropdown'}
+              onClick={toggleUser}
             >
               <Link to="#">
                 {userInfo.name} <i className="fa fa-caret-down"></i>
@@ -63,7 +68,7 @@ function App() {
                   <Link to="/orderhistory">Order History</Link>
                 </li>
                 <li>
-                  <Link to="/signout" onClick={signoutHandler}>
+                  <Link to="#signout" onClick={signoutHandler}>
                     Sign Out
                   </Link>
                 </li>
@@ -71,6 +76,33 @@ function App() {
             </div>
           ) : (
             <Link to="/signin">Sign In</Link>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <div
+              className={isActiveAdmin ? 'dropdown toggle' : 'dropdown'}
+              onClick={toggleAdmin}
+            >
+              <Link to="#admin">
+                Admin <i className="fa fa-caret-down"></i>
+              </Link>
+              <ul className="dropdown-content">
+                <li>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+
+                <li>
+                  <Link to="/productList">Products</Link>
+                </li>
+
+                <li>
+                  <Link to="/orderList">Orders</Link>
+                </li>
+
+                <li>
+                  <Link to="/userList">Users</Link>
+                </li>
+              </ul>
+            </div>
           )}
         </div>
       </header>
